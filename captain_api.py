@@ -50,17 +50,25 @@ try:
 				#print('*************'+ res.text)
 				for j in range(len(res.json())):
 					loginfo = res.json()[j]
-					if 'rolling_restart' in loginfo['description']:
+					if (('rolling_restart' in loginfo['description']) or \
+						('codeline_upgrade' in loginfo['description']) or \
+						('update_learn_b2' in loginfo['description']) or \
+						('provision_learn' in loginfo['description'])):
 						strinfo += ',' + loginfo['updated_at']
 						break
+					"""
 					elif 'codeline_upgrade' in loginfo['description']:
 						strinfo += ',' + loginfo['updated_at']
 						break
-					else:
-						pass
-
+					elif 'update_learn_b2' in loginfo['description']:
+						strinfo += ',' +loginfo['updated_at']
+						break
+					elif 'provision_learn' in loginfo['description']:
+						strinfo += ',' +loginfo['updated_at']
+						break
+					"""	
 			f.write(strinfo + '\n')
-			
 finally:
 	f.close()
+
 
