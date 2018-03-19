@@ -20,7 +20,8 @@ api_url = base_url + 'learns.json?limit=5000'
 
 response = requests.get(api_url, auth=(captain_username, captain_password), timeout=10)
 if not response.ok:
-    raise Exception('{}: {}'.format(response.status_code, response.text))
+    raise Exception('{}: {}'.format(response.status_code, \
+			response.text))
 #print (response.json()[0])
 
 f = open('client-ids','w')
@@ -32,8 +33,31 @@ try:
 		if(site['environment'] == envinfo):
 			#listSite = list(site.values())
 			#print(site)
-			sublist = [site['url'],site['captainid'],site['identifyingtag'],site['environment']]
-			strinfo = ','.join(sublist)
+			sublist = [str(site['id']),site['url'], \
+					site['captainid'],site['identifyingtag'], \
+					site['environment']]
+			strinfo = ','.join(sublist)	
+
+			log_url = base_url +'learns/' + str(site['id']) \
+						+'/logs.json'
+			res = requests.get(log_url, auth=(captain_username, \
+					captain_password), timeout=10)
+			if not res.ok:
+				raise Exception('{}: {}'.format(res.status_code, \
+								res.text))
+			if len(res.json()) > 0 :
+				#print('*************'+ res.text)
+				for j in range(len(res.json())):
+					loginfo = res.json()[j]
+					if 'rolling_restart' in loginfo['description']:
+						strinfo += ',' + loginfo['updated_at']
+						break
+					elif 'codeline_upgrade' in loginfo['description']:
+						strinfo += ',' + loginfo['updated_at']
+						break
+					else:
+						pass
+
 			f.write(strinfo + '\n')
 			
 finally:
