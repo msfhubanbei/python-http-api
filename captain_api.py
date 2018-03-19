@@ -25,7 +25,7 @@ if not response.ok:
 #print (response.json()[0])
 
 f = open('client-ids','w')
-f.write("id-entityid,url,captainid,identifyingtag,environment\n")
+f.write("id-entityid,url,captainid,identifyingtag,environment,update_at\n")
 try:
 	for i in range(len(response.json())):
 		#print (len(response.json()))
