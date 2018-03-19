@@ -10,7 +10,7 @@ import sys
 if len(sys.argv) >= 2:
 	envinfo =  sys.argv[1]
 else:
-	envinfo = 'Staging'
+	envinfo = 'tag'
 print(envinfo+"&&&&&&&&&&&&&&&&")
 
 base_url='http://captain.bbpd.io/api/'
@@ -30,7 +30,8 @@ try:
 	for i in range(len(response.json())):
 		#print (len(response.json()))
 		site = response.json()[i]
-		if(site['environment'] == envinfo):
+		#if (site['environment'] == envinfo):
+		if envinfo in site['environment']:
 			#listSite = list(site.values())
 			#print(site)
 			sublist = [str(site['id']),site['url'], \
