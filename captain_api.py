@@ -7,21 +7,26 @@ import base64
 import requests
 import sys
 
+base_url='http://captain.bbpd.io/api/'
+captain_username = base64.b64decode('yourname').decode()
+captain_password = base64.b64decode('yourpassword').decode()
+
+def httpclient(api_url,  username, password):
+
+	response = requests.get(api_url, auth=(username, password), timeout=10)
+	if not response.ok:
+		raise Exception('{}: {}'.format(response.status_code, response.text))
+	return response
+
 if len(sys.argv) >= 2:
 	envinfo =  sys.argv[1]
 else:
 	envinfo = 'tag'
 print(envinfo+"&&&&&&&&&&&&&&&&")
 
-base_url='http://captain.bbpd.io/api/'
-captain_username = base64.b64decode('yourname').decode()
-captain_password = base64.b64decode('yourpasswd').decode()
 api_url = base_url + 'learns.json?limit=5000'
+response = httpclient(api_url, captain_username, captain_password)
 
-response = requests.get(api_url, auth=(captain_username, captain_password), timeout=10)
-if not response.ok:
-    raise Exception('{}: {}'.format(response.status_code, \
-			response.text))
 #print (response.json()[0])
 
 f = open('client-ids','w')
@@ -39,13 +44,10 @@ try:
 					site['environment']]
 			strinfo = ','.join(sublist)	
 
-			log_url = base_url +'learns/' + str(site['id']) \
+			api_url = base_url +'learns/' + str(site['id']) \
 						+'/logs.json'
-			res = requests.get(log_url, auth=(captain_username, \
-					captain_password), timeout=10)
-			if not res.ok:
-				raise Exception('{}: {}'.format(res.status_code, \
-								res.text))
+			res = httpclient(api_url, captain_username, captain_password)
+
 			if len(res.json()) > 0 :
 				#print('*************'+ res.text)
 				for j in range(len(res.json())):
