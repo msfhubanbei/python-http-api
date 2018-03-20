@@ -58,17 +58,6 @@ try:
 						('provision_learn' in loginfo['description'])):
 						strinfo += ',' + loginfo['updated_at']
 						break
-					"""
-					elif 'codeline_upgrade' in loginfo['description']:
-						strinfo += ',' + loginfo['updated_at']
-						break
-					elif 'update_learn_b2' in loginfo['description']:
-						strinfo += ',' +loginfo['updated_at']
-						break
-					elif 'provision_learn' in loginfo['description']:
-						strinfo += ',' +loginfo['updated_at']
-						break
-					"""	
 			f.write(strinfo + '\n')
 finally:
 	f.close()
