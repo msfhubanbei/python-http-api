@@ -21,7 +21,7 @@ def httpclient(api_url,  username, password):
 if len(sys.argv) >= 2:
 	envinfo =  sys.argv[1]
 else:
-	envinfo = 'tag'
+	envinfo = 'all'
 print(envinfo+"&&&&&&&&&&&&&&&&")
 
 api_url = base_url + 'learns.json?limit=5000'
@@ -36,7 +36,7 @@ try:
 		#print (len(response.json()))
 		site = response.json()[i]
 		#if (site['environment'] == envinfo):
-		if envinfo in site['environment']:
+		if ((envinfo in site['environment']) or (envinfo == 'all')):
 			#listSite = list(site.values())
 			#print(site)
 			sublist = [str(site['id']),site['url'], \
