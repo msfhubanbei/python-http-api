@@ -1,0 +1,6 @@
+Testing    newrelic L4C-staging
+ap-southeast-1-test-fleet01  newrelic-L4C-producction
+ap-southeast-1-test-fleet02  newrelic-L4C-production
+ap-southeast-2-test-fleet01  newrelic-L4C-production
+eu-central-1-test-fleet01  newrelic-L4C-production
+us-gov-west-1-test-fleet01  newrelic-L4C-staging
