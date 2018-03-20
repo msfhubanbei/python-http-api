@@ -11,3 +11,5 @@ python3 captain_api.py Production<br>
 python3 captain_api.py Development<br>
 python3 captain_api.py playground<br>
 
+#lib 'requests' links
+http://docs.python-requests.org/en/master/ . 
