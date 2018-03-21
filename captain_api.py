@@ -1,14 +1,23 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 #author: elina.ma@blackboard.com
-#This script need been run above python 2.18
-
+#This script has been tested via python 3.6
+'''
+ If you want to get all provisioned sites' instance id on AWS, 
+ please run 'python3 captain.py all'.
+ If you want to get provisioned sites' instance id which belong to 
+test envirionment, please run 'python3 captain.py Testing'
+and 'pythons captain.py test'.
+ The sum of the two 'client-ids' files from script's output
+is instanceid for all sites provisioned on test environment. 
+'''
 import base64
 import requests
+
 import sys
 
 base_url='http://captain.bbpd.io/api/'
-captain_username = base64.b64decode('yourname').decode()
+captain_username = base64.b64decode('yourusername').decode()
 captain_password = base64.b64decode('yourpassword').decode()
 
 def httpclient(api_url,  username, password):
