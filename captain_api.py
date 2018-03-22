@@ -4,10 +4,10 @@
 #This script has been tested via python 3.6
 '''
  If you want to get all provisioned sites' instance id on AWS, 
- please run 'python3 captain.py all'.
+ please run 'python3 captain_api.py all'.
  If you want to get provisioned sites' instance id which belong to 
-test envirionment, please run 'python3 captain.py Testing'
-and 'pythons captain.py test'.
+test envirionment, please run 'python3 captain_api.py Testing'
+and 'pythons captain_api.py test'.
  The sum of the two 'client-ids' files from script's output
 is instanceid for all sites provisioned on test environment. 
 '''
